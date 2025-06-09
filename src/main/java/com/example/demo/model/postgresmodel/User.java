@@ -1,5 +1,9 @@
 package com.example.demo.model.postgresmodel;
 
+
+
+import com.example.demo.constants.Role;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,14 +19,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String username;
+    @Column(nullable = false)
+    private String name;
 
     @Column(nullable = false)
     private String email;
 
     @Column(nullable = false)
     private String password;
-
-    private String role; // e.g. USER, ADMIN
+    @Enumerated(EnumType.STRING)
+    private Role role; 
 }
