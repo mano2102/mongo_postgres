@@ -12,15 +12,19 @@ import io.github.cdimascio.dotenv.Dotenv;
 public class DemoApplication {
   public static void main(String[] args) {
 
-    Dotenv dotenv = Dotenv.load();
-    System.setProperty("spring.datasource.url", dotenv.get("POSTGRES_URL"));
-    System.setProperty("spring.datasource.username", dotenv.get("POSTGRES_USERNAME"));
-    System.setProperty("spring.datasource.password", dotenv.get("POSTGRES_PASSWORD"));
-    System.setProperty("MONGO_URI", dotenv.get("MONGO_URI"));
-    System.setProperty("MONGO_DB", dotenv.get("MONGO_DB"));
-    System.setProperty("AWS_ACCESS_KEY", dotenv.get("AWS_ACCESS_KEY"));
-    System.setProperty("AWS_SECRET_KEY", dotenv.get("AWS_SECRET_KEY"));
-    System.setProperty("AWS_REGION", dotenv.get("AWS_REGION"));
+    try {
+      Dotenv dotenv = Dotenv.load();
+      System.setProperty("spring.datasource.url", dotenv.get("POSTGRES_URL"));
+      System.setProperty("spring.datasource.username", dotenv.get("POSTGRES_USERNAME"));
+      System.setProperty("spring.datasource.password", dotenv.get("POSTGRES_PASSWORD"));
+      System.setProperty("MONGO_URI", dotenv.get("MONGO_URI"));
+      System.setProperty("MONGO_DB", dotenv.get("MONGO_DB"));
+      System.setProperty("AWS_ACCESS_KEY", dotenv.get("AWS_ACCESS_KEY"));
+      System.setProperty("AWS_SECRET_KEY", dotenv.get("AWS_SECRET_KEY"));
+      System.setProperty("AWS_REGION", dotenv.get("AWS_REGION"));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     SpringApplication.run(DemoApplication.class, args);
   }
 
